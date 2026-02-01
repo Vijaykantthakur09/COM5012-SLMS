@@ -1,0 +1,6 @@
+# macOS
+.DS_Store
+
+# .NET build folders
+bin/
+obj/
