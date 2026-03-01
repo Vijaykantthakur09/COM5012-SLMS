@@ -10,6 +10,7 @@ namespace SLMS
     {
         public List<Book> Books { get; } = new();
         public List<Member> Members { get; } = new();
+        public List<Librarian> Librarians { get; } = new();
 
         public LibrarySystem()
         {
@@ -17,8 +18,13 @@ namespace SLMS
             Books.Add(new Book(1, "The Maze Runner", "James Dashner"));
             Books.Add(new Book(2, "1984", "George Orwell"));
             Books.Add(new Book(3, "Dune", "Frank Herbert"));
+            Books.Add(new Book(4, "To Kill a Mockingbird", "Harper Lee"));
+            Books.Add(new Book(5, "The Great Gatsby", "F. Scott Fitzgerald"));
 
             Members.Add(new Member(1, "Vijay"));
+            Members.Add(new Member(2, "Abishek"));
+
+            Librarians.Add(new Librarian(1, "Dhiraj"));
         }
 
         public void ClearExpiredReservations()
@@ -80,6 +86,9 @@ namespace SLMS
 
             var book = Books.FirstOrDefault(b => b.Id == bookId);
             if (book == null) return "Book not found.";
+
+            if (book.Status == BookStatus.Reserved)
+                return $"Book is already reserved (Until: {book.ReservedUntil:yyyy-MM-dd}).";
 
             if (book.Status != BookStatus.Borrowed)
                 return $"You can only reserve a book that is currently Borrowed (status: {book.Status}).";

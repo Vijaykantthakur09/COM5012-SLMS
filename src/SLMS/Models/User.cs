@@ -12,7 +12,7 @@ namespace SLMS.Models
             Name = name;
         }
 
-        // Polymorphism: subclasses can override thiscontinue from step 6
+        // Polymorphism: subclasses can override this
         
         public virtual string Role() => "User";
     }
